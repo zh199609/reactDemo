@@ -8,7 +8,7 @@ class TodoItem extends Component {
   }
 
   render() {
-    const {content,test} = this.props;
+    console.log("todoItem render")
     return (
       <li onClick={this.handleClick}>{test}--{content}</li>
     )
@@ -19,6 +19,33 @@ class TodoItem extends Component {
     const {delItem, index} = this.props;
     delItem(index);
   }
+
+  //当一个组件从父组件接受参数
+  //只要父组件的render函数被重新被执行 子组件的的这个生命周期函数被执行
+  //如果这个组件第一次存在于父组件中，不会被执行
+  //如果这个组件之前已经存在于父组件中，才会被执行
+  componentWillReceiveProps(nextProps, nextContext) {
+    console.log("todoItem------componentWillReceiveProps……")
+  }
+
+  //当这个组件即将被从页面中剔除的时候才会被执行
+  componentWillUnmount() {
+    console.log("todoItem------componentWillUnmount……")
+  }
+
+
+  shouldComponentUpdate(nextProps, nextState, nextContext) {
+    console.log("todoItem shouldComponentUpdate")
+    if (nextProps.content !== this.props.content) {
+     console.log("true")
+      return true;
+    }else{
+     console.log("false")
+      return false;
+    }
+  }
+
+
 }
 /*规定参数类型*/
 TodoItem.propTypes = {

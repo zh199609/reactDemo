@@ -1,5 +1,6 @@
 import React, {Component, Fragment} from 'react';
 import TodoItem from './TodoItem';
+import axios from 'axios';
 import './style.css';
 
 class TodoList extends Component {
@@ -7,8 +8,8 @@ class TodoList extends Component {
     super(props);
     //当组件的state或者props发生变化时，render函数会重新执行
     this.state = {
-      inputInit: '添加 todo list',
-      list: ['学习英文', '学习React']
+      inputInit: '',
+      list: []
     }
 
     this.handleInputChange = this.handleInputChange.bind(this);
@@ -18,12 +19,15 @@ class TodoList extends Component {
 
 
   render() {
+    console.log("render……")
     return (
       <Fragment>
         <div>
           <label htmlFor="insertArea">输入内容</label>
           <input id='insertArea' className='input' value={this.state.inputInit}
-                 onChange={this.handleInputChange}/>
+                 onChange={this.handleInputChange} ref={(input)=>{
+                   this.input = input;
+          }}/>
           <button onClick={this.handleBtnClick}>提交</button>
         </div>
         <ul>
@@ -58,6 +62,8 @@ class TodoList extends Component {
         list,
         inputInit
       }
+    },()=>{
+      console.log("setState callback")
     })
     /*this.setState({
       list: [...this.state.list, this.state.inputInit],
@@ -69,7 +75,6 @@ class TodoList extends Component {
     this.setState((prevState) => {
       // console.log([...prevState.list])
       const {list} = prevState;
-      console.log(list)
       list.splice(index, 1);
       return list
     })
@@ -77,6 +82,32 @@ class TodoList extends Component {
     /*  this.setState({
         list: list
       })*/
+  }
+
+  //在组件即将被挂载到页面的时刻自动执行
+  componentWillMount() {
+    console.log("componentWillMount……")
+  }
+  //组件被挂载到页面之后会被自动执行
+  componentDidMount() {
+    console.log("componentDidMount……")
+  }
+  //组件被更新之前，他会自动被执行
+  shouldComponentUpdate(nextProps, nextState, nextContext) {
+    console.log("shouldComponentUpdate……");
+    return true;
+  }
+  //组件更新之前，他会自动执行，在shouldComponentUpdate 之后执行
+  componentWillUpdate(nextProps, nextState, nextContext) {
+    console.log("componentWillUpdate……")
+  }
+  //组件更新之后被自动执行
+  componentDidUpdate(prevProps, prevState, snapshot) {
+    console.log("componentDidUpdate……")
+  }
+
+  componentWillUnmount() {
+    console.log("componentWillUnmount……")
   }
 
   getTodoItem() {
