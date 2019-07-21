@@ -5,6 +5,7 @@ import './style.css';
 class TodoList extends Component {
   constructor(props) {
     super(props);
+    //当组件的state或者props发生变化时，render函数会重新执行
     this.state = {
       inputInit: '添加 todo list',
       list: ['学习英文', '学习React']
