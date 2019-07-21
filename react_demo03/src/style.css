@@ -1,3 +1,29 @@
-.input{
+.input {
     border: 1px solid deepskyblue;
+}
+
+.show {
+    opacity: 1;
+    transition: all 1s ease-in;
+}
+
+.hide {
+    /*opacity: 0;
+    transition: all 1s ease-in;*/
+    animation: hide-item 2s ease-in forwards;
+}
+
+@keyframes hide-item {
+    0% {
+        opacity: 1;
+        color: mediumvioletred;
+    }
+    50% {
+        opacity: 1;
+        color: #c794b3;
+    }
+    100% {
+        opacity: 1;
+        color: #4b66c7;
+    }
 }
