@@ -15,6 +15,7 @@ logs/
 # idea
 .idea/
 *.iml
+node_modules/
 
 *velocity.log*
 
